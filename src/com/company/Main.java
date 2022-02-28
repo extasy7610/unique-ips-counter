@@ -8,7 +8,7 @@ import java.util.HashSet;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        long time = System.currentTimeMillis();
+//        long time = System.currentTimeMillis();
 
         Reader reader = new FileReader("ips.txt");
         BufferedReader bufferedReader = new BufferedReader(reader);
@@ -38,7 +38,7 @@ public class Main {
                 getCountOfUniqueIps_UsingHashMapAndHashCode(bufferedReader)
         );
 
-        System.out.println(System.currentTimeMillis() - time);
+//        System.out.println(System.currentTimeMillis() - time);
 
         reader.close();
         bufferedReader.close();
