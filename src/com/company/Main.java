@@ -29,8 +29,13 @@ public class Main {
 //        );
 
         /* fourth way - using HashMap */
+//        System.out.println(
+//                getCountOfUniqueIps_UsingHashMap(bufferedReader)
+//        );
+
+        /* fifth way - using HashMap */
         System.out.println(
-                getCountOfUniqueIps_UsingHashMap(bufferedReader)
+                getCountOfUniqueIps_UsingHashMapAndHashCode(bufferedReader)
         );
 
         System.out.println(System.currentTimeMillis() - time);
@@ -111,6 +116,30 @@ public class Main {
 
         while (bufferedReader.ready()) {
             ips.put(bufferedReader.readLine(), true);
+        }
+
+        return ips.size();
+    }
+
+    private static int getCountOfUniqueIps_UsingHashMapAndHashCode(BufferedReader bufferedReader) throws IOException {
+        HashMap<Integer, Boolean> ips = new HashMap<>();
+        ArrayList<Integer> ip = new ArrayList<>();
+
+        while (bufferedReader.ready()) {
+            int c = bufferedReader.read();
+
+            if (c == 10) {
+                ips.put(ip.hashCode(), true);
+                ip.clear();
+                continue;
+            }
+
+            ip.add(c);
+        }
+
+        // if no EOL after last ip
+        if (ip.size() > 0) {
+            ips.put(ip.hashCode(), true);
         }
 
         return ips.size();
