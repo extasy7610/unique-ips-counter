@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Main {
@@ -23,8 +24,13 @@ public class Main {
 //        );
 
         /* third way - using String */
+//        System.out.println(
+//                getCountOfUniqueIps_UsingString(bufferedReader)
+//        );
+
+        /* fourth way - using HashMap */
         System.out.println(
-                getCountOfUniqueIps_UsingString(bufferedReader)
+                getCountOfUniqueIps_UsingHashMap(bufferedReader)
         );
 
         System.out.println(System.currentTimeMillis() - time);
@@ -98,5 +104,15 @@ public class Main {
         }
 
         return counter;
+    }
+
+    private static int getCountOfUniqueIps_UsingHashMap(BufferedReader bufferedReader) throws IOException {
+        HashMap<String, Boolean> ips = new HashMap<>();
+
+        while (bufferedReader.ready()) {
+            ips.put(bufferedReader.readLine(), true);
+        }
+
+        return ips.size();
     }
 }
