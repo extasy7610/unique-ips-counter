@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Main {
@@ -11,8 +12,14 @@ public class Main {
         Reader reader = new FileReader("ips.txt");
         BufferedReader bufferedReader = new BufferedReader(reader);
 
+        /* first way - using HashSet */
+//        System.out.println(
+//                getCountOfUniqueIps_UsingHashSet(bufferedReader)
+//        );
+
+        /* second way - using ArrayList */
         System.out.println(
-                getCountOfUniqueIps_UsingHashSet(bufferedReader)
+                getCountOfUniqueIps_UsingArrayList(bufferedReader)
         );
 
         System.out.println(System.currentTimeMillis() - time);
@@ -49,5 +56,21 @@ public class Main {
         }
 
         return ipSet.size();
+    }
+
+    private static int getCountOfUniqueIps_UsingArrayList(BufferedReader bufferedReader) throws IOException {
+        ArrayList<String> ipList = new ArrayList<>();
+        int counter = 0;
+
+        while (bufferedReader.ready()) {
+            String ip = bufferedReader.readLine();
+
+            if (!ipList.contains(ip)) {
+                ipList.add(ip);
+                counter++;
+            }
+        }
+
+        return counter;
     }
 }
