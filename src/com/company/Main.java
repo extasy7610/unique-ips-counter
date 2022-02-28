@@ -18,8 +18,13 @@ public class Main {
 //        );
 
         /* second way - using ArrayList */
+//        System.out.println(
+//                getCountOfUniqueIps_UsingArrayList(bufferedReader)
+//        );
+
+        /* third way - using String */
         System.out.println(
-                getCountOfUniqueIps_UsingArrayList(bufferedReader)
+                getCountOfUniqueIps_UsingString(bufferedReader)
         );
 
         System.out.println(System.currentTimeMillis() - time);
@@ -67,6 +72,27 @@ public class Main {
 
             if (!ipList.contains(ip)) {
                 ipList.add(ip);
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+    private static long getCountOfUniqueIps_UsingString(BufferedReader bufferedReader) throws IOException {
+        StringBuilder ips = new StringBuilder();
+        int counter = 0;
+
+        while (bufferedReader.ready()) {
+            String ip = bufferedReader.readLine();
+
+            StringBuilder ipWithSeparator = new StringBuilder();
+            ipWithSeparator.append("<").append(ip).append(">");
+
+            String ipWithSeparatorStr = ipWithSeparator.toString();
+
+            if (ips.indexOf(ipWithSeparatorStr) == -1) {
+                ips.append(ipWithSeparatorStr);
                 counter++;
             }
         }
